@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import dev.theuzfaleiro.doit.util.Constants.TODO_DATABASE_TASK_TABLE_NAME
-import dev.theuzfaleiro.todo.data.model.Priority
 
 @Entity(tableName = TODO_DATABASE_TASK_TABLE_NAME)
 data class Task(
