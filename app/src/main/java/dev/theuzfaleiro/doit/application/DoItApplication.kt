@@ -1,4 +1,4 @@
-package dev.theuzfaleiro.application
+package dev.theuzfaleiro.doit.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

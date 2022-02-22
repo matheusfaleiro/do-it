@@ -6,7 +6,7 @@ import dev.theuzfaleiro.doit.ui.theme.LowPriority
 import dev.theuzfaleiro.doit.ui.theme.MediumPriority
 import dev.theuzfaleiro.doit.ui.theme.UnknownPriority
 
-enum class Priority(val colors: Color) {
+enum class Priority(val color: Color) {
     LOW(LowPriority),
     MEDIUM(MediumPriority),
     HIGH(HighPriority),

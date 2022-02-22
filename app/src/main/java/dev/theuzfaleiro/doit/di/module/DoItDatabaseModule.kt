@@ -1,4 +1,4 @@
-package dev.theuzfaleiro.di.module
+package dev.theuzfaleiro.doit.di.module
 
 import android.content.Context
 import androidx.room.Room
