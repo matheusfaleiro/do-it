@@ -44,6 +44,7 @@ import dev.theuzfaleiro.doit.ui.theme.MEDIUM_PADDING
 import dev.theuzfaleiro.doit.ui.theme.SEARCH_TOP_APP_BAR
 import dev.theuzfaleiro.doit.ui.viewmodel.TaskViewModel
 import dev.theuzfaleiro.doit.util.AppBarState
+import dev.theuzfaleiro.doit.util.TrailingIconState
 
 @Composable
 fun AppBar(taskViewModel: TaskViewModel, appBarState: AppBarState, searchTextState: String) {
@@ -96,6 +97,8 @@ private fun SearchAppBar(
     onSearchClicked: (String) -> Unit,
     onClearClicked: () -> Unit
 ) {
+    var trailingIconState by remember { mutableStateOf(TrailingIconState.READY_TO_DELETE) }
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -115,7 +118,7 @@ private fun SearchAppBar(
                 )
             },
             textStyle = TextStyle(
-                color = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontSize = MaterialTheme.typography.titleMedium.fontSize
             ),
             singleLine = true,
@@ -132,7 +135,23 @@ private fun SearchAppBar(
             },
             trailingIcon = {
                 IconButton(
-                    onClick = onClearClicked,
+                    onClick = {
+                        when (trailingIconState) {
+                            TrailingIconState.READY_TO_CLOSE -> {
+                                if (queryText.isNotEmpty()) {
+                                    onTextChanged("")
+                                } else {
+                                    onClearClicked()
+                                    trailingIconState = TrailingIconState.READY_TO_DELETE
+                                }
+                            }
+                            TrailingIconState.READY_TO_DELETE -> {
+                                onTextChanged("")
+                                trailingIconState = TrailingIconState.READY_TO_CLOSE
+
+                            }
+                        }
+                    },
                     modifier = Modifier.alpha(ContentAlpha.disabled)
                 ) {
                     Icon(

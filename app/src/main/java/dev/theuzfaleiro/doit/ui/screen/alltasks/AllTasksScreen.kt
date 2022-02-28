@@ -30,7 +30,9 @@ fun AllTasksScreen(navigateToTaskScreen: (taskId: Int) -> Unit, taskViewModel: T
                 searchTextState = searchQuery
             )
         },
-        content = { },
+        content = {
+
+        },
         floatingActionButton = {
             FloatingActionButton(navigateToTaskScreen = navigateToTaskScreen)
         }
